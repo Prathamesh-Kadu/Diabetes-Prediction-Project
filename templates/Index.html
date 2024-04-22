@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiabPred</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/new-logo-only.png') }}" style="width: 100%;" type="image/png">
+
+  <!-- Bootstrap Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+  <!-- Icon Fonts -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+
+
+  <!-- Organicz Style sheet -->
+  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+   
+
+</head>
+
+<body class="bg-whites">
+  <!-- header section  -->
+  <header class="my-header">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-whites">
+      <div class="container">
+        <a class="navbar-brand text-blacks" href="/">
+            <img src="{{ url_for('static', filename='images/logo/new-logo-only.png') }}" alt="" width="100px">
+            <span style="color:red;">Diab</span><span style="color: #1c4980;">Pred</span> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 px-4">
+            <li class="nav-item">
+              <a class="nav-link active text-blacks" style="font-weight: 500;" href="/">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link text-blacks" style="font-weight: 500;" href="about.html">About Us</a>
+            </li> -->
+            <li class="nav-item">
+               <a class="nav-link text-black" style="font-weight: 500;" href="/test">Test Now</a>
+            </li>
+
+          </ul>
+
+          <!-- Theme change  -->
+          <div class="theme-change px-4">
+            <div class="divbox">
+
+              <img src="{{ url_for('static', filename='images/theme-icon/moon.png') }}" id="theme-icon" alt="">
+
+
+            </div>
+          </div>
+
+          <form class="d-flex" role="search">
+            <!-- <button class="btn my-nav-but" type="submit"><i class="fa-regular fa-sun fa-lg"></i>
+              &nbsp;
+              Light/Dark
+              Mode</button> -->
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- End header section  -->
+
+
+
+  <div class="container pt-6">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 py-5">
+        <div class="div-box1 py-7">
+          <h1 class="text-blacks">Check Your <span class="text-reds">Diabetes</span> <br> For The Better Future...
+          </h1>
+          <p class="text-reds"><strong>DiabPred is an innovative platform which utilizes efficient algorithms and data
+              analysis
+              to predict your
+              risk of
+              developing diabetes.</strong></p>
+          <br>
+          <a href="/test" class="color-btn">
+            <i></i>
+            <span>Test Now</span>
+
+          </a>
+        </div>
+
+      </div>
+      <div class="col-lg-6 d-none-992">
+        <div class="img-box" style="    padding-top: 90px;">
+          <img src="{{ url_for('static', filename='images/Diabet.png') }}" class="img2 pt-3" alt="">
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- About Start -->
+  <section class="section about-sec style-3 my-4" style="background: radial-gradient(#a0bfe4, transparent);">
+    <div class="container">
+      <div class="style-heading">
+        <h4 class="text-center text-reds section-titles">About</h4>
+        <h2 class="title text-blacks text-center pb-5">What Is Diabetes?</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mb-2">
+          <div class="about-wrapper">
+            <img src="{{ url_for('static', filename='images/diabetesx1.jpg') }}" alt="image" class="home-img shadow" width="100%">
+
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="section-title-wrap">
+
+            <p class="text-justify text-blacks mb-0">
+              Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Glucose
+              is your body’s
+              main source of energy. Your body can make glucose, but glucose also comes from the food you eat.
+              <br>
+              Insulin is a hormone made by the pancreas that helps glucose get into your cells to be used for energy. If
+              you have
+              diabetes, your body doesn’t make enough—or any—insulin, or doesn’t use insulin properly. Glucose then
+              stays in your
+              blood and doesn’t reach your cells.
+              <br>
+              Diabetes raises the risk for damage to the eyes, kidneys, nerves, and heart. Diabetes is also linked to
+              some types of
+              cancer. Taking steps to prevent or manage diabetes may lower your risk of developing diabetes health
+              problems.
+
+            </p>
+            <br>
+            <h4 class="title text-blacks">What causes Diabetes?</h4>
+            <p class="text-justify text-blacks mb-0">
+              Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container mt-4">
+      <h2 class="text-blacks text-center">What are the different types of diabetes?</h2>
+      <p class="text-blacks text-center fs-5">The most common types of diabetes are type 1, type 2, and gestational
+        diabetes.
+      </p>
+      <br>
+      <div class="rowa">
+
+        <div class="columna">
+          <div class="carda">
+            <span class="text-reds"><strong>Type 1 diabetes</strong></span>
+            <p class="text-blacks text-justify pt-4">
+              If you have type 1 diabetes, your body makes little or no insulin. Your immune system attacks and destroys
+              the cells in
+              your pancreas that make insulin. Type 1 diabetes is usually diagnosed in children and young adults,
+              although it can
+              appear at any age. People with type 1 diabetes need to take insulin every day to stay alive.
+            </p>
+          </div>
+        </div>
+        <div class="columna">
+          <div class="carda">
+            <span class="text-reds"><strong>Type 2 diabetes</strong></span>
+            <p class="text-blacks text-justify pt-4">
+              If you have type 2 diabetes, the cells in your body don’t use insulin properly. The pancreas may be making
+              insulin but
+              is not making enough insulin to keep your blood glucose level in the normal range. Type 2 diabetes is the
+              most common
+              type of diabetes.
+            </p>
+          </div>
+        </div>
+        <div class="columna">
+          <div class="carda">
+            <span class="text-reds"><strong>Gestational diabetes</strong></span>
+            <p class="text-blacks text-justify pt-4">
+              Gestational diabetes is a type of diabetes that develops during pregnancy. Most of the time, this type of
+              diabetes goes
+              away after the baby is born. However, if you’ve had gestational diabetes, you have a higher chance of
+              developing type 2
+              diabetes later in life. Sometimes diabetes diagnosed during pregnancy is type 2 diabetes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer Start -->
+  <footer class="bg-whites">
+    <div class="container-fluid footer mt-2" data-wow-delay="0.1s">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-logo-col">
+              <a href=""><img class="text-center footer-logo" src="{{ url_for('static', filename='images/logo/new-logo-only.png') }}" alt=""
+                  width="150px" /></a>
+              <h4 class="text-center text-blacks">DiabPred</h4>
+            </div>
+
+
+
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h4 class="text-center text-blacks">DiabPred</h4>
+            <p class="text-blacks text-justify py-2">
+              DiabPred is an innovative platform which utilizes
+              efficient
+              algorithms and data analysis to predict your risk of developing diabetes. By simply inputting relevant
+              health
+              information, you can gain valuable insights into your current health status.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h5 class="text-blacks mb-4">Quick Links</h5>
+            <ul class="navbar-nav pad-some mb-2 mb-lg-0">
+              <li>
+                <a class="text-blacks quick-link" href="/"><i class="fa-solid fa-angles-right"
+                    style="color: #007bff;"></i>&nbsp; Home</a>
+              </li>
+              
+              <li>
+                <a class="text-blacks quick-link" href="/test"><i class="fa-solid fa-angles-right"
+                    style="color: #007bff;"></i>&nbsp; Test Now</a>
+
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mb-3 mb-md-0 text-white">
+            Copyright © 2024, All Rights Reserved
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- scroll to top  -->
+  <button class="btnx"><i class="fa-solid fa-angle-up"></i></button>
+  <!-- End scroll to top  -->
+
+
+  <!-- Script for Scroll to top button  -->
+  <script>
+    const button = document.querySelector('.btnx');
+
+    const displayButton = () => {
+      window.addEventListener('scroll', () => {
+        console.log(window.scrollY);
+
+        if (window.scrollY > 100) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      });
+    };
+
+    const scrollToTop = () => {
+      button.addEventListener("click", () => {
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+        console.log(event);
+      });
+    };
+
+    displayButton();
+    scrollToTop();
+  </script>
+  <!-- End Script for Scroll to top button  -->
+
+
+  <!-- Script for Theme color change  -->
+  <script>
+    var themebutton = document.getElementById("theme-icon");
+    themebutton.onclick = function () {
+      document.body.classList.toggle("dark-theme");
+      if (document.body.classList.contains("dark-theme")) {
+        themebutton.src = "assets/images/theme-icon/sun.png";
+      }
+      else {
+        themebutton.src = "assets/images/theme-icon/moon.png";
+      }
+    }
+  </script>
+  <!-- Script for Theme color change  -->
+
+
+
+
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>

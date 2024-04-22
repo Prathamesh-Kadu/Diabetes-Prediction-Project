@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/new-logo-only.png') }}" style="width: 100%;" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome cdn -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="styl.css"> -->
+    
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styl.css') }}">
+
+    <style>
+        .container-tub {
+     
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+        width: 738px;
+    height: 429px;
+    position: absolute;
+    z-index: 999;
+    top: 36%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    box-shadow: 0 0 6px -1px rgb(0 0 0);
+    text-align: center;
+    }
+    .progress-wrapper {
+      text-align: center;
+      
+    }
+    #progress-bar {
+      width: 300px;
+      height: 20px;
+      margin: 0 auto;
+    }
+    .home-page{
+            border: 3px solid #1c4980;
+    color: #1c4980;
+    font-weight: 700;
+    }
+    .home-page:hover{
+        background-color: #1c4980;
+        color: white;
+        font-weight: 700;
+    }
+
+
+
+#background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Ensure it's above other content */
+  display: none; /* Initially hidden */
+}
+
+#popup-block {
+  /* Your popup block styles */
+}
+
+.popup-active #background-overlay {
+  display: block; /* Show overlay when popup block is active */
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="container ">
+        <div class="row  p-4">
+            <div class="p-2 bg-white w-100">
+                <abbr title="Back to Home">
+                    <span id="back-home" onclick="showPop()" data-bs-toggle="modal" data-bs-target="#popupModal">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </span>
+                </abbr>
+                <div class="question-slider">
+                    <div class="question-container">
+
+
+                        <div class="question" id="question1">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 1</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                What is your age?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Less than 40
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>40-49
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="2">
+                                <i class="fas fa-check select-icon"></i>50-59
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="3">
+                                <i class="fas fa-check select-icon"></i>60 or older
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question2">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 2</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                What is your gender?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Male
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Female
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question3">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 3</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Do any of your immediate family members (parents, siblings) have a history of diabetes?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question4">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 4</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Do you have high blood pressure?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question5">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 5</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How much physical activity do you engage in daily?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>One hour or more
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>More than half an hour
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="2">
+                                <i class="fas fa-check select-icon"></i>Less than half an hour
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="3">
+                                <i class="fas fa-check select-icon"></i>None
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question6">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 6</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                What is your height and weight?
+                            </div>
+                            <div class="col-12 mx-auto p-2">
+                                <div class="input-div" style="border:none;">
+                                    <label for="feet-count" style="font-weight: normal;margin-right: 19px;font-size: 26px;">Height</label>
+                                    <select id="feet-count" class="form-contol form-control-lg" style="color: #1c4980;font-size: 26px;margin-right: 10px;">
+                                        <option>Feet</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                    <select id="inch-count" class="form-contol form-control-lg" style="color: #1c4980;font-size: 26px;">
+                                        <option>Inches</option>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mx-auto p-2">
+                                <label for="weight-count" style="font-weight: normal;margin-right: 19px;margin-left: 10px;">Kilogram (Kg)</label>
+                               <input type="number" class="form-contol" id="weight-count" min="1" max="200" oninput="if(this.value.length > 3) this.value = this.value.slice(0, 3);" style=" caret-color: black;">
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question7">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 7</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Do you smoke?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question8">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 8</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Do you drink alcohol?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question9">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 9</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How many hours do you typically sleep at night?
+                            </div>
+                            <div class="col-12 mx-auto p-2">
+                                <div class="input-div">
+                                    <input type="hidden" class="question-value" value="">
+                                    <button class="decrement" data-target="count2"><i class="fas fa-minus"></i></button>
+                                    <div id="count2" class="count" data-value="">0</div>
+                                    <button class="increment" data-target="count2"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question10">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 10</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How many hours of uninterrupted and restful sleep do you typically achieve on an average night?
+                            </div>
+                            <div class="col-12 mx-auto p-2">
+                                <div class="input-div">
+                                    <input type="hidden" class="question-value" value="">
+                                    <button class="decrement" data-target="count3"><i class="fas fa-minus"></i></button>
+                                    <div id="count3" class="count" data-value="">0</div>
+                                    <button class="increment" data-target="count3"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question11">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 11</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Do you regularly take medicine?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question12">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 12</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How frequently do you eat junk food?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Occasionally    
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Often
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="2">
+                                <i class="fas fa-check select-icon"></i>Very often
+    
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="3">
+                                <i class="fas fa-check select-icon"></i>Always
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question13">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 13</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How often do you experience stress?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Not at all
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Sometimes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="2">
+                                <i class="fas fa-check select-icon"></i>Very often
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="3">
+                                <i class="fas fa-check select-icon"></i>Always
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question14">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 14</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                What is your blood pressure level?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Low
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Normal
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="2">
+                                <i class="fas fa-check select-icon"></i>High
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question15">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 15</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                How many times have you been pregnant?
+                            </div>
+                            <div class="col-12 mx-auto p-2">
+                                <div class="input-div">
+                                    <input type="hidden" class="question-value" value="0">
+                                    <button class="decrement" data-target="count4"><i class="fas fa-minus"></i></button>
+                                    <div id="count4" class="count" data-value="">0</div>
+                                    <button class="increment" data-target="count4"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question16">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 16</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                Have you ever been diagnosed with diabetes?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Yes
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>No
+                            </div>
+                        </div>
+
+
+
+                        <div class="question" id="question17">
+                            <div class="col-12 text-center mb-4">
+                                <h1 style="color: #1c4980; font-family: sans-serif; font-weight: bold;">Question 17</h1>
+                                <div class="horizontal-line mx-auto"></div>
+                            </div>
+                            <div class="col-12 mx-auto mb-4">
+                                What is your urination frequency?
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="0">
+                                <i class="fas fa-check select-icon"></i>Not much
+                            </div>
+                            <div class="col-12 mx-auto p-2 option" data-value="1">
+                                <i class="fas fa-check select-icon"></i>Quite often
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                                        <!-- Button Prev & Next -->
+
+                <div class="col-12 text-center" style="padding-left: 10px;padding-right: 39px;" >
+                    <button class="btn ms-4 nav-btn" style="float:left;" id="previousBtn" onclick="showPrevious()" disabled>Previous</button>
+                    <span class="" style="padding-right: 42px;color: #1c4980;">
+                        Question <span id="question-number" style="font-weight:bold;">1</span> of 17
+                    </span>
+                    <button class="btn  nav-btn" style="float: right;" id="nextBtn" onclick="showNext()">Next</button>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+                                                    <!-- Pop up - Box -->
+
+    <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="popupModalLabel">Leave Test</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="text-align: center;color: #1c4980;font-weight: bold;">
+                    <p>Do you want to leave the test?</p>
+                </div>
+                <div class="" style="padding: 10px 59px;">
+                    <button type="button" class="btn btn-primary ml-auto" onclick="redirectHome()">Yes</button>
+                    <button type="button" class="btn " style="float: right;color: #0d6efd;border: 3px solid #0d6efd" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            <!-- Result plate -->
+    <div class="container-tub p-2" id="result-tab" style="display: none;">
+        <h2 class="text-center p-2" style="color:#1c4980;">Result</h2>
+        <div  style="display: flex;justify-content: center;">
+
+            <div class="skill">
+                <div class="outer">
+                    <div class="inner">
+                        <div id="number"></div>
+                    </div>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                    <defs>
+                        <linearGradient id="GradientColor">
+                            <stop offset="0" stop-color="#DA22FF" />
+                            <stop offset="100%" stop-color="#9733EE" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                </svg>
+            </div>
+        </div>
+        <div id="risk-level" style="font-weight: bold;font-family: math;padding: 24px 1px;text-align: center;"></div>
+        <div class="text-center">
+            <button  class="btn home-page" onclick="redirectHome()" >Home</button>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+   
+ <script>
+    function redirectHome(){
+        window.location.href = "/";
+    }
+
+
+
+
+    const questions = document.querySelectorAll('.question');
+    let currentQuestionIndex = 0;
+    const previousBtn = document.getElementById('previousBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const questionContainer = document.querySelector('.question-container');
+
+    function showNext() {
+        const currentQuestion = questions[currentQuestionIndex];
+        const selectedOption = currentQuestion.querySelector('.option.selected');
+        var inputVal = 0;
+        var weight =0;
+        if (currentQuestionIndex === 5 || currentQuestionIndex === 8 || currentQuestionIndex === 9 || currentQuestionIndex === 14) {
+
+            var validFlag = false;
+            if (currentQuestionIndex === 5) {
+                weight = $('#weight-count').val();
+
+                validFlag = true;
+                if ($('#inch-count').prop('selectedIndex') === 0) {
+                     validFlag = false;
+                }
+                if ($('#feet-count').prop('selectedIndex') === 0) {
+                     validFlag = false;
+                }
+            }
+
+            if(currentQuestionIndex !== 5){
+                inputVal = parseInt(currentQuestion.querySelector('.input-div .question-value').value);
+            }
+        }else{
+            inputVal = 0;
+        }
+    
+        if (selectedOption || (inputVal !== 0 && !isNaN(inputVal))|| (validFlag && weight !== "") || (currentQuestionIndex === 14 && inputVal === 0)) {
+            if (currentQuestionIndex < questions.length - 1) {
+                if($(".selected").eq(1).data('value') == 1 &&currentQuestionIndex == 13){
+                    currentQuestionIndex+=2;
+                }else{
+                    currentQuestionIndex++;
+                }
+                    
+                $("#question-number").text(currentQuestionIndex+1);
+                slideToCurrentQuestion();
+            }
+        }
+        updateButtonStates();
+    }
+
+
+    function showPrevious() {
+        if (currentQuestionIndex > 0) {
+            $("#question-number").text(currentQuestionIndex);
+            if($(".selected").eq(1).data('value') == 1 &&currentQuestionIndex == 15){
+                currentQuestionIndex-=2;
+
+            }else{
+                currentQuestionIndex--;
+            }
+                
+            slideToCurrentQuestion();
+        }
+        updateButtonStates();
+    }
+
+        function slideToCurrentQuestion() {
+            const offset = -currentQuestionIndex * questionContainer.offsetWidth;
+            questionContainer.style.transform = `translateX(${offset}px)`;
+        }
+
+        function updateButtonStates() {
+            previousBtn.disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerText = "Submit";
+                nextBtn.classList.add("submit-test");
+                nextBtn.disabled = false; 
+            } else {
+                nextBtn.innerText = "Next";
+                nextBtn.classList.remove("submit-test");
+                nextBtn.disabled = false; 
+            }
+        }
+
+
+
+        function toggleOptionSelection(option) {
+                const selectIcon = option.querySelector('.select-icon');
+            selectIcon.style.visibility = option.classList.contains('selected') ? 'visible' : 'hidden';
+        }
+        document.querySelectorAll('.question').forEach(question => {
+            question.querySelectorAll('.option').forEach(option => {
+             option.addEventListener('click', () => {
+                 question.querySelectorAll('.option').forEach(otherOption => {
+                        if (otherOption !== option) {
+                    otherOption.classList.remove('selected');
+                    toggleOptionSelection(otherOption);
+                        }
+                    });
+            option.classList.toggle('selected');
+                  toggleOptionSelection(option);
+             });
+            });
+        });
+
+
+
+
+
+
+
+        const decrementBtns = document.querySelectorAll('.decrement');
+
+    
+        const incrementBtns = document.querySelectorAll('.increment');
+
+   
+        decrementBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const countDisplay = document.getElementById(targetId);
+                let count = parseInt(countDisplay.textContent);
+                const currentQuestion = questions[currentQuestionIndex];
+
+                if (count > 0) {
+                    count--;
+                    countDisplay.textContent = count;
+                    currentQuestion.querySelector('.input-div input').value = count;
+                }
+            });
+        });
+
+   
+        incrementBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const countDisplay = document.getElementById(targetId);
+                let count = parseInt(countDisplay.textContent);
+                const currentQuestion = questions[currentQuestionIndex];
+                if (count < 24) {
+                    count++;
+                    countDisplay.textContent = count;
+                    currentQuestion.querySelector('.input-div input').value = count;
+                }
+            });
+        });
+
+
+  
+
+
+
+    document.addEventListener("click", function(event) {
+        if($(".selected").eq(12).data('value') === 0 || $(".selected").eq(12).data('value') === 1){
+            if (event.target.classList.contains("submit-test")) {
+                submitTestFunction();
+            }
+        }
+    });
+
+    function submitTestFunction(){
+        var diabetesParameters = {
+            BMI : findBMI($('#weight-count').val(),$('#feet-count').val(),$('#inch-count').val()),     //Body Mass Index
+            Sleep :parseInt($(".question-value").eq(0).val()),   // Sleep
+            SoundSleep : parseInt($(".question-value").eq(1).val()), // Sound Sleep
+            Pregancies : parseInt($(".question-value").eq(2).val()),// Number of pregnancies
+            Age : $(".selected").eq(0).data('value'),           // Age
+            highBP : $(".selected").eq(3).data('value'),        //High BP
+            Smoking :$(".selected").eq(5).data('value'),         // Smoking
+            BPLevel : $(".selected").eq(10).data('value'),        // BP Level
+            Pdiabetes : $(".selected").eq(11).data('value'),        // History of Diabetes
+            Stress : $(".selected").eq(9).data('value'),          // Stree level
+            Family_Diabetes : $(".selected").eq(2).data('value'), // Family Diabetes
+            PhysicallyActive : $(".selected").eq(4).data('value'),       // Physical Activity
+            Alcohol :$(".selected").eq(6).data('value'),         //Alcohol Consumption
+            UriationFreq : $(".selected").eq(12).data('value'),          //Urination Frequency
+            JunkFood : $(".selected").eq(8).data('value'),        // Junk Food
+            Gender : $(".selected").eq(1).data('value'),         // Gender
+            RegularMedicine : $(".selected").eq(7).data('value'),       // Regual Medication Consumption
+        }
+        console.log(diabetesParameters);
+        
+
+
+
+        if(diabetesParameters.UriationFreq === 0 || diabetesParameters.UriationFreq === 1){
+            
+            $.ajax({
+                url: '/predict',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(diabetesParameters),
+                success: function(response) {
+                    console.log(response);
+                    let element = document.getElementById('result-tab');
+                    element.style.display = 'block';
+                    // console.log(response.diabetes_proba);
+                    // Disable the button
+                    document.getElementById("previousBtn").disabled = true;
+                    document.getElementById("nextBtn").disabled = true;
+                    let opt = document.getElementById("question17");
+                    opt.style.pointerEvents = 'none';
+
+
+                    resultAccuracy = Math.round(response.diabetes_proba*100)+1;
+                    updateRiskLevel(resultAccuracy);
+            showPopupBlock();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        
+    }
+    function showPopupBlock() {
+  document.body.classList.add('popup-active');
+}
+
+
+
+
+    function findBMI(weight, feet, inch) {
+    weight = parseInt(weight);
+    feet = parseInt(feet);
+    inch = parseInt(inch);
+
+    var height = (feet * 12) + inch;
+    height = height * 0.0254; 
+    height = height * height;
+    var bmi = weight / height;
+    return Math.round(bmi);
+}
+
+
+    </script>
+     <script>
+        updateRiskLevel(80);
+        function updateRiskLevel(resultAccuracy) {
+  let number = document.getElementById('number');
+  let counter = 0; // Set the initial value
+  const upperLimit = resultAccuracy; // Define the upper limit
+
+  const intervalId = setInterval(() => {   
+    if (counter >= upperLimit) {
+      clearInterval(intervalId); // Stop the interval when reaching the upper limit
+    } else {
+      if (counter <= 25) {
+        document.querySelector("circle").style.stroke = "#39FF14";
+        $("#risk-level").html("<p class='text-success'>Your diabetes risk is low.</p>");
+      } else if (counter <= 50) {
+        document.querySelector("circle").style.stroke = "#FFA836";
+        $("#risk-level").html("<p class='text-warning'>Your diabetes risk is moderate.</p>");
+      } else if (counter <= 75) {
+        document.querySelector("circle").style.stroke = "#FD673A";
+        $("#risk-level").html("<p class='text-danger'>Your diabetes risk is high. Please consult a healthcare professional.</p>");
+      } else {
+        document.querySelector("circle").style.stroke = "#e31e23";
+        $("#risk-level").html("<p class='text-danger'>Your diabetes risk is very high. Please consult a healthcare professional immediately.</p>");
+      }
+      number.innerHTML = `${counter}%`;
+      counter += 1;
+    }
+  }, 30);
+}
+
+// Call the function with the desired accuracy value
+
+
+
+    </script>
+</body>
+</html>
+
